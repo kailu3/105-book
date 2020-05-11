@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Installation &#8212; CIS 105 Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Common Shortcuts" href="shortcuts.html" />
+    <link rel="prev" title="Introduction to Jupyter" href="intro-jupyter.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">CIS 105 Book</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../preface.html">Preface</a>
+  </li>
+  <li class="active">
+    <a href="intro-jupyter.html">Introduction to Jupyter</a>
+  <ul class="nav sidenav_l2">
+    <li class="active">
+      <a href="">Installation</a>
+    </li>
+    <li class="">
+      <a href="shortcuts.html">Common Shortcuts</a>
+    </li>
+  </ul>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/content/0-getting-started/installation.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#anaconda-recommended" class="nav-link">Anaconda (Recommended)</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#miniconda" class="nav-link">Miniconda</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#pvenv" class="nav-link">pvenv</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>There are multiple ways to install Python. The easiest way to do so is through the Anaconda distribution which comes in two flavours:</p>
+<div class="section" id="anaconda-recommended">
+<h2>Anaconda (Recommended)<a class="headerlink" href="#anaconda-recommended" title="Permalink to this headline">¶</a></h2>
+<p>Anaconda is a very large installation and is most useful for users who are not familiar with installing modules or packages with other package managers. Choose Anaconda if you:</p>
+<ul class="simple">
+<li><p>Are new to <code class="docutils literal notranslate"><span class="pre">conda</span></code> or Python</p></li>
+<li><p>Like the convenience of having Python and over 150 scientific packages automatically installed at once</p></li>
+<li><p>Have the time and disk space</p></li>
+</ul>
+<p>You can install Anaconda <a class="reference external" href="https://www.anaconda.com/distribution/#download-section">here</a>. Make sure to get the Python 3 (look for 3.x) version.</p>
+<div class="alert alert-info">
+<p class="admonition-title">Note</p>
+<p>For students in CIS 105, I would recommend installing through Anaconda. It makes life much easier.</p>
+</div>
+</div>
+<div class="section" id="miniconda">
+<h2>Miniconda<a class="headerlink" href="#miniconda" title="Permalink to this headline">¶</a></h2>
+<p>Miniconda simply gives you the Python interpreter along with a command-line tool called <code class="docutils literal notranslate"><span class="pre">conda</span></code> which operates as a cross-platform package manager geared towards installing Python packages. Choose Miniconda if you:</p>
+<ul class="simple">
+<li><p>Do not mind installing each of the packages you want to use individually</p></li>
+<li><p>Do not have time or disk space to install over 150 packages at once</p></li>
+</ul>
+<p>You can install Miniconda <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">here</a>. Make sure to get the Python 3 version.</p>
+</div>
+<div class="section" id="pvenv">
+<h2>pvenv<a class="headerlink" href="#pvenv" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/pyenv/pyenv">pyenv</a> is a light-weight Python version management tool that lets you easily switch between multiple versions of Python. I personally prefer using pyenv for work and collaborating with others as it makes switching between Python versions rather convenient. If you are using a Mac, I suggest installing pyenv through Homebrew.</p>
+<blockquote>
+<div><p>pyenv is NOT required or needed for the purposes of CIS 105.</p>
+</div></blockquote>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="intro-jupyter.html" title="previous page">Introduction to Jupyter</a>
+    <a class='right-next' id="next-link" href="shortcuts.html" title="next page">Common Shortcuts</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kai Lu<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

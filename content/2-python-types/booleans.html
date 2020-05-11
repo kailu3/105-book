@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Booleans &#8212; CIS 105 Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">CIS 105 Book</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../preface.html">Preface</a>
+  </li>
+  <li class="">
+    <a href="../0-getting-started/intro-jupyter.html">Introduction to Jupyter</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../../_sources/content/2-python-types/booleans.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/kailu3/105-book/master?urlpath=tree/content/2-python-types/booleans.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                
+            </div>
+        </div>
+        
+
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#comparisons" class="nav-link">Comparisons</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#a-quick-case-study" class="nav-link">A Quick Case Study</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="booleans">
+<h1>Booleans<a class="headerlink" href="#booleans" title="Permalink to this headline">¶</a></h1>
+<p>Boolean values only come in two flavours: <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>. There’s not much for me to talk about right now but these are going to be super useful later when we encounter pandas boolean indexing in further chapters as we try to slice our data. More on that later~</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="comparisons">
+<h2>Comparisons<a class="headerlink" href="#comparisons" title="Permalink to this headline">¶</a></h2>
+<p>Booleans are always the result of any comparison between two objects. Comparison operators come in five flavours. Here’s a quick summary:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Syntax</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>==</p></td>
+<td><p>Equals</p></td>
+<td><p>x == y</p></td>
+<td><p>2 == 2</p></td>
+<td><p>True</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;</p></td>
+<td><p>Strictly Greater than</p></td>
+<td><p>x &gt; y</p></td>
+<td><p>5 &gt; 3</p></td>
+<td><p>True</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;</p></td>
+<td><p>Strictly Less than</p></td>
+<td><p>x &lt; y</p></td>
+<td><p>5 &lt; 3</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;=</p></td>
+<td><p>Greater than or Equal to</p></td>
+<td><p>x &gt;= y</p></td>
+<td><p>4 &gt;= 4</p></td>
+<td><p>True</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;=</p></td>
+<td><p>Less than or Equal to</p></td>
+<td><p>x &lt;= y</p></td>
+<td><p>4 &lt;= 4</p></td>
+<td><p>True</p></td>
+</tr>
+</tbody>
+</table>
+<p>We typically use Boolean values to make comparisons between two objects. While this may seem trivial at this point, it is in fact very powerful in supporting quick and effective data analysis tasks. Here’s a quick sneak peak at what we’ll be learning later on this semester:</p>
+</div>
+<div class="section" id="a-quick-case-study">
+<h2>A Quick Case Study<a class="headerlink" href="#a-quick-case-study" title="Permalink to this headline">¶</a></h2>
+<p><strong>Scenario:</strong> Let’s say you are looking for an Airbnb home to stay in for an upcoming trip. Now, you can’t just pick any Airbnb listing as you would most likely need to filter the possibilities down to the listings that most satisfy your personal requirements. Now, suppose you had a dataset containing all of the listings in the location you are looking at. However, there are some contraints that you need to consider:</p>
+<ul class="simple">
+<li><p>You need to look for listings less than 100 usd to be able to reimburse your trip</p></li>
+<li><p>Since you are travelling with a classmate, you would prefer two beds in your Airbnb home</p></li>
+<li><p>You want a listing that you can book instantly since your flight leaves tomorrow</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">.head()</span></code> shows the first few rows of a dataset. You can also specify how many rows you want to return! On the other hand, <code class="docutils literal notranslate"><span class="pre">.tail()</span></code> returns the last few rows of a dataset</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Importing Data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/kailu3/think-data/master/content/data/airbnb.csv&quot;</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>num_beds</th>
+      <th>can_instant_book</th>
+      <th>price</th>
+      <th>listing_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+      <td>22</td>
+      <td>20776319</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>False</td>
+      <td>28</td>
+      <td>16492050</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.5</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+      <td>30</td>
+      <td>14266451</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>True</td>
+      <td>24</td>
+      <td>17625889</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>True</td>
+      <td>21</td>
+      <td>18543147</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<blockquote>
+<div><p>To satisfy these contraints, we will need to use <code class="docutils literal notranslate"><span class="pre">boolean</span> <span class="pre">indexing</span></code> which makes uses of <code class="docutils literal notranslate"><span class="pre">Comparisons</span></code> and <code class="docutils literal notranslate"><span class="pre">Booleans</span></code>!</p>
+</div></blockquote>
+<p>This is the syntax to get listings less than 100 usd from the <code class="docutils literal notranslate"><span class="pre">dataset</span></code>. You’ll learn the syntax later in class but pay attention to <code class="docutils literal notranslate"><span class="pre">dataset['price']</span> <span class="pre">&lt;</span> <span class="pre">100</span></code>. The whole expression means that I only want rows where the <code class="docutils literal notranslate"><span class="pre">price</span></code> column is less than 100.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>num_beds</th>
+      <th>can_instant_book</th>
+      <th>price</th>
+      <th>listing_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+      <td>22</td>
+      <td>20776319</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>False</td>
+      <td>28</td>
+      <td>16492050</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.5</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+      <td>30</td>
+      <td>14266451</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>True</td>
+      <td>24</td>
+      <td>17625889</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>True</td>
+      <td>21</td>
+      <td>18543147</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6562</th>
+      <td>2.5</td>
+      <td>3</td>
+      <td>6</td>
+      <td>False</td>
+      <td>93</td>
+      <td>16301030</td>
+    </tr>
+    <tr>
+      <th>6563</th>
+      <td>2.0</td>
+      <td>2</td>
+      <td>4</td>
+      <td>True</td>
+      <td>93</td>
+      <td>24775642</td>
+    </tr>
+    <tr>
+      <th>6564</th>
+      <td>1.0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>True</td>
+      <td>91</td>
+      <td>33972014</td>
+    </tr>
+    <tr>
+      <th>6565</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>True</td>
+      <td>91</td>
+      <td>29004955</td>
+    </tr>
+    <tr>
+      <th>6566</th>
+      <td>2.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>False</td>
+      <td>92</td>
+      <td>24244660</td>
+    </tr>
+  </tbody>
+</table>
+<p>2768 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>To get listings that have two beds, the process is similar. Here pay attention to <code class="docutils literal notranslate"><span class="pre">dataset['num_beds']</span></code>. The whole expression means that I only want rows where the number of beds is at least 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;num_beds&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>num_beds</th>
+      <th>can_instant_book</th>
+      <th>price</th>
+      <th>listing_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>True</td>
+      <td>24</td>
+      <td>17625889</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>True</td>
+      <td>21</td>
+      <td>18543147</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>True</td>
+      <td>26</td>
+      <td>21974394</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>True</td>
+      <td>26</td>
+      <td>22065764</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>False</td>
+      <td>22</td>
+      <td>24577793</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6664</th>
+      <td>5.5</td>
+      <td>4</td>
+      <td>4</td>
+      <td>True</td>
+      <td>721</td>
+      <td>21579184</td>
+    </tr>
+    <tr>
+      <th>6665</th>
+      <td>3.5</td>
+      <td>3</td>
+      <td>5</td>
+      <td>True</td>
+      <td>744</td>
+      <td>26170853</td>
+    </tr>
+    <tr>
+      <th>6666</th>
+      <td>3.0</td>
+      <td>3</td>
+      <td>5</td>
+      <td>True</td>
+      <td>781</td>
+      <td>31122862</td>
+    </tr>
+    <tr>
+      <th>6667</th>
+      <td>4.5</td>
+      <td>4</td>
+      <td>7</td>
+      <td>False</td>
+      <td>853</td>
+      <td>3431143</td>
+    </tr>
+    <tr>
+      <th>6668</th>
+      <td>2.0</td>
+      <td>3</td>
+      <td>4</td>
+      <td>False</td>
+      <td>994</td>
+      <td>13694877</td>
+    </tr>
+  </tbody>
+</table>
+<p>4877 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>Finally, we want to be able to instantly book the listing which refers to the <code class="docutils literal notranslate"><span class="pre">can_instant_book</span></code> column. The datatype of this column is Boolean so we keep rows where the value is <code class="docutils literal notranslate"><span class="pre">True</span></code>. This again is similar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;can_instant_book&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bathrooms</th>
+      <th>bedrooms</th>
+      <th>num_beds</th>
+      <th>can_instant_book</th>
+      <th>price</th>
+      <th>listing_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+      <td>22</td>
+      <td>20776319</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.5</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+      <td>30</td>
+      <td>14266451</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>True</td>
+      <td>24</td>
+      <td>17625889</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>True</td>
+      <td>21</td>
+      <td>18543147</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+      <td>29</td>
+      <td>21853372</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6660</th>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>True</td>
+      <td>655</td>
+      <td>28583334</td>
+    </tr>
+    <tr>
+      <th>6662</th>
+      <td>3.0</td>
+      <td>3</td>
+      <td>4</td>
+      <td>True</td>
+      <td>655</td>
+      <td>13590317</td>
+    </tr>
+    <tr>
+      <th>6664</th>
+      <td>5.5</td>
+      <td>4</td>
+      <td>4</td>
+      <td>True</td>
+      <td>721</td>
+      <td>21579184</td>
+    </tr>
+    <tr>
+      <th>6665</th>
+      <td>3.5</td>
+      <td>3</td>
+      <td>5</td>
+      <td>True</td>
+      <td>744</td>
+      <td>26170853</td>
+    </tr>
+    <tr>
+      <th>6666</th>
+      <td>3.0</td>
+      <td>3</td>
+      <td>5</td>
+      <td>True</td>
+      <td>781</td>
+      <td>31122862</td>
+    </tr>
+  </tbody>
+</table>
+<p>4849 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p><strong>Combining the 3 statements</strong></p>
+<p>Now let’s combine the 3 statements and select all the listings where all three conditions satisfy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">dataset</span>
+    <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;num_beds&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;can_instant_book&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">shape</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(1363, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">.shape</span></code> returns the dimensions of the dataframe after we applied the 3 filters on it. It looks like there are 1363 listings that satisfy all three constraints. I guess we can filter down even more to get the perfect listing! :)</p>
+</div></blockquote>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kai Lu<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>
