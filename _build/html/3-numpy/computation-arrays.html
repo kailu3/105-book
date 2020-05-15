@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Computation on Arrays &#8212; CIS 105 Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Conditional Selection on Arrays" href="conditional-arrays.html" />
+    <link rel="prev" title="NumPy Arrays" href="numpy-arrays.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">CIS 105 Book</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../preface.html">Preface</a>
+  </li>
+  <li class="">
+    <a href="../0-getting-started/intro-jupyter.html">Introduction to Jupyter</a>
+  </li>
+  <li class="">
+    <a href="../1-intro-programming/hello-world.html">Hello World</a>
+  </li>
+  <li class="">
+    <a href="../2-python-types/intro-types.html">Python Types</a>
+  </li>
+  <li class="active">
+    <a href="intro-numpy.html">Introduction to NumPy</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="numpy-arrays.html">NumPy Arrays</a>
+    </li>
+    <li class="active">
+      <a href="">Computation on Arrays</a>
+    </li>
+    <li class="">
+      <a href="conditional-arrays.html">Conditional Selection on Arrays</a>
+    </li>
+  </ul>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/3-numpy/computation-arrays.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/kailu3/105-book/master?urlpath=tree/3-numpy/computation-arrays.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                
+            </div>
+        </div>
+        
+
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#for-loop-vs-vectorized-operation" class="nav-link">For Loop vs. Vectorized Operation</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#array-arithmetic" class="nav-link">Array Arithmetic</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#wrappers-in-numpy" class="nav-link">Wrappers in NumPy</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#aggregation-functions" class="nav-link">Aggregation Functions</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#example" class="nav-link">Example</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="computation-on-arrays">
+<h1>Computation on Arrays<a class="headerlink" href="#computation-on-arrays" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The beauty of doing computation on NumPy arrays is that we can do calculations very quickly when we use built-in vectorized operations. Instead of iterating over the array and doing an operation at each iteration (e.g. using a for loop), it is much much faster to use a vectorized operation. This can be done by performing an operation on the array, which can be applied to each element. Essentially, this vectorized approach is designed to push the loop into the compiled layer that underlies NumPy, leading to much faster computation.</p>
+<div class="section" id="for-loop-vs-vectorized-operation">
+<h2>For Loop vs. Vectorized Operation<a class="headerlink" href="#for-loop-vs-vectorized-operation" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we wanted to add 1 to each element in an array. The straightforward way to do it is to use a for loop..</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">some_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">some_array</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">some_array</span><span class="p">)):</span>
+        <span class="n">some_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">some_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">some_array</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Loop</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">add_one</span><span class="p">(</span><span class="n">some_array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>775 µs ± 115 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we used the vectorization inherent to NumPy arrays, we would get a much faster compute time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">some_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vectorized Operation</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">some_array</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.35 µs ± 61.3 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(1.29 \mu s\)</span>  is a lot smaller than  <span class="math notranslate nohighlight">\(688 \mu s\)</span>! Since we get the same result from either method, it is preferable to avoid using for loops when we can use vectorized operations on NumPy arrays</p>
+</div>
+</div>
+<div class="section" id="array-arithmetic">
+<h2>Array Arithmetic<a class="headerlink" href="#array-arithmetic" title="Permalink to this headline">¶</a></h2>
+<p>Hopefully now I’ve convinced you to use vectorized operations in NumPy. They are, fortunately, very easy to use and feel very natural to use with the standard addition, subtraction, multiplication, and division operatiors in Python. Essentially, any operator on a NumPy array is applied on each element.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">some_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">some_array</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5, 6, 7, 8])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x + 3 -&gt;&quot;</span><span class="p">,</span> <span class="n">some_array</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x - 3 -&gt;&quot;</span><span class="p">,</span> <span class="n">some_array</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x * 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">some_array</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x / 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">some_array</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x // 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">some_array</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x ** 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">some_array</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x % 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">some_array</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x + 3 -&gt; [ 3  4  5  6  7  8  9 10 11]
+x - 3 -&gt; [-3 -2 -1  0  1  2  3  4  5]
+x * 2 -&gt; [ 0  2  4  6  8 10 12 14 16]
+x / 2 -&gt; [0.  0.5 1.  1.5 2.  2.5 3.  3.5 4. ]
+x // 2 -&gt; [0 0 1 1 2 2 3 3 4]
+x ** 2 -&gt; [ 0  1  4  9 16 25 36 49 64]
+x % 2 -&gt; [0 1 0 1 0 1 0 1 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can combine these operations together as well to do more complex operations to all elements of an array. For instance, suppose we wanted to approximate <span class="math notranslate nohighlight">\(\pi\)</span> which is <span class="math notranslate nohighlight">\($\frac{\pi^2}{6} = \frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \space ...\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># We first calculate the RHS elements</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Then we take the sum, multiply by 6, and take the sqrt</span>
+<span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.14063710098594
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="wrappers-in-numpy">
+<h2>Wrappers in NumPy<a class="headerlink" href="#wrappers-in-numpy" title="Permalink to this headline">¶</a></h2>
+<p>Each of the standard operators (e.g. <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>) were simply convenient wrappers for specific functions built into NumPy. For example, the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator is a wrapper for the <code class="docutils literal notranslate"><span class="pre">add</span></code> function in NumPy. Equivalently, we can use the syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x + 3 -&gt;&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">some_array</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x - 3 -&gt;&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">some_array</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x * 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">some_array</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x / 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">some_array</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x // 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floor_divide</span><span class="p">(</span><span class="n">some_array</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x ** 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">some_array</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x % 2 -&gt;&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">some_array</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>x + 3 -&gt; [ 3  4  5  6  7  8  9 10 11]
+x - 3 -&gt; [-3 -2 -1  0  1  2  3  4  5]
+x * 2 -&gt; [ 0  2  4  6  8 10 12 14 16]
+x / 2 -&gt; [0.  0.5 1.  1.5 2.  2.5 3.  3.5 4. ]
+x // 2 -&gt; [0 0 1 1 2 2 3 3 4]
+x ** 2 -&gt; [ 0  1  4  9 16 25 36 49 64]
+x % 2 -&gt; [0 1 0 1 0 1 0 1 0]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="aggregation-functions">
+<h2>Aggregation Functions<a class="headerlink" href="#aggregation-functions" title="Permalink to this headline">¶</a></h2>
+<p>Apart from doing arithmetic with NumPy arrays, we can also get summary statistics easily using built-in NumPy operations. When we’re analyzing data, it is always useful to compute these to get a good sense of what our data looks like. Here are some of the most common NumPy operations:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aggregation</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">np.mean</span></code></p></td>
+<td><p>mean</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">np.max</span></code></p></td>
+<td><p>maximum</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">np.min</span></code></p></td>
+<td><p>minimum</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">np.median</span></code></p></td>
+<td><p>median</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">np.var</span></code></p></td>
+<td><p>variance</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">np.std</span></code></p></td>
+<td><p>standard deviation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-primary">
+<p class="admonition-title">Tip</p>
+<p>You can always type <code class="docutils literal notranslate"><span class="pre">np.</span></code> andd press <code class="docutils literal notranslate"><span class="pre">TAB</span></code> to see all the operations available!</p>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>To illustrate how we can use these operations, it’s best to learn through an example. Suppose we collected some data on textbook prices and wanted to do some initial data exploration on this data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">95</span><span class="p">,</span><span class="mf">19.95</span><span class="p">,</span><span class="mf">51.5</span><span class="p">,</span><span class="mf">128.5</span><span class="p">,</span><span class="mi">96</span><span class="p">,</span><span class="mf">48.5</span><span class="p">,</span><span class="mf">146.75</span><span class="p">,</span><span class="mi">92</span><span class="p">,</span><span class="mf">19.5</span><span class="p">,</span><span class="mf">85.5</span><span class="p">,</span><span class="mf">16.95</span><span class="p">,</span><span class="mf">9.95</span><span class="p">,</span><span class="mf">5.95</span><span class="p">,</span><span class="mf">58.75</span><span class="p">,</span><span class="mf">6.5</span><span class="p">,</span><span class="mf">70.75</span><span class="p">,</span>
+               <span class="mf">4.25</span><span class="p">,</span><span class="mf">115.25</span><span class="p">,</span><span class="mi">158</span><span class="p">,</span><span class="mf">6.5</span><span class="p">,</span><span class="mf">130.5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">41.25</span><span class="p">,</span><span class="mf">169.75</span><span class="p">,</span><span class="mf">71.25</span><span class="p">,</span><span class="mf">82.25</span><span class="p">,</span><span class="mf">12.95</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mf">41.5</span><span class="p">,</span><span class="mi">31</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum price:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">tb</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum price:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">tb</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean price:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tb</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median price:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tb</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variance:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">tb</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">tb</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Minimum price: 4.25
+Maximum price: 169.75
+Mean price: 65.01666666666667
+Median price: 65.01666666666667
+Variance: 2555.8738888888884
+Standard deviation: 50.55565140406054
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p class="admonition-title">Note</p>
+<p>Pretty straightforward isn’t it? :)</p>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="numpy-arrays.html" title="previous page">NumPy Arrays</a>
+    <a class='right-next' id="next-link" href="conditional-arrays.html" title="next page">Conditional Selection on Arrays</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kai Lu<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

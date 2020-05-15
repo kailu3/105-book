@@ -1,6 +1,27 @@
-- file: intro
-- file: content
+- file: preface
+
+- file: 0-getting-started/intro-jupyter
   sections:
-    - file: markdown
-    - file: notebooks
-- file: syntax
+    - file: 0-getting-started/installation
+    - file: 0-getting-started/shortcuts
+    
+- file: 1-intro-programming/hello-world
+  sections:
+    - file: 1-intro-programming/basic-math
+    - file: 1-intro-programming/call-expressions
+    - file: 1-intro-programming/variables
+
+- file: 2-python-types/intro-types
+  sections:
+  - file: 2-python-types/numbers
+  - file: 2-python-types/strings
+  - file: 2-python-types/booleans
+  - file: 2-python-types/type-casting
+  - file: 2-python-types/tuples-lists-dicts
+
+- file: 3-numpy/intro-numpy
+  sections:
+  - file: 3-numpy/numpy-arrays
+  - file: 3-numpy/computation-arrays
+  - file: 3-numpy/conditional-arrays
+
