@@ -24,4 +24,14 @@
   - file: 3-numpy/numpy-arrays
   - file: 3-numpy/computation-arrays
   - file: 3-numpy/conditional-arrays
+ 
+- file: 4-pandas/intro-pandas
+  sections:
+  - file: 4-pandas/creating-dataframes
+  - file: 4-pandas/reading-data
+  - file: 4-pandas/checking-data
+  - file: 4-pandas/selecting-data
+  - file: 4-pandas/cleaning-data
+  - file: 4-pandas/modifying-columns
+  - file: 4-pandas/data-aggregation
 

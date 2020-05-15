@@ -27,8 +27,10 @@
     <script src="../_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction to Pandas" href="../4-pandas/intro-pandas.html" />
     <link rel="prev" title="Computation on Arrays" href="computation-arrays.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,6 +89,9 @@
       <a href="">Conditional Selection on Arrays</a>
     </li>
   </ul>
+  </li>
+  <li class="">
+    <a href="../4-pandas/intro-pandas.html">Introduction to Pandas</a>
   </li>
 </ul>
 </nav>
@@ -168,6 +173,258 @@
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Often when dealing with arrays, we sometimes want to select elements from them based on a condition. For instance, suppose we only wanted to select elements that were larger than a number or some criterion. We can do this utilizing comparison operators or in other words Booleans. We can start with an example:</p>
+<p>Suppose that we had daily temperature data for Vancouver and wanted to look at the <strong>maximum</strong> temperatures for each day. We first load the data in using <code class="docutils literal notranslate"><span class="pre">Pandas</span></code> (another library that we’ll cover in the next section).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2019 daily max temperatures</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/kailu3/105-book/master/data/vancouver-2019-max-temp.csv&quot;</span>
+<span class="n">daily_max</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)[</span><span class="s1">&#39;degC&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our first step is to look at some basic summary statistics using what we learned from the last section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum temp:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">daily_max</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum temp:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">daily_max</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean temp:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">daily_max</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median temp:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">daily_max</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variance:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">daily_max</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">daily_max</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Minimum temp: -0.5355916000000001
+Maximum temp: 28.981457
+Mean temp: 16.194906061111112
+Median temp: 16.194906061111112
+Variance: 39.22653236797662
+Standard deviation: 6.263108842098836
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p class="admonition-title">Note</p>
+<p>The summary statistics we compute are for the <strong>maximum</strong> daily temperatures in Vancouver in 2019</p>
+</div>
+<p>Now suppose we had a question, say: <strong>How many times in 2019 was the maximum temperature below 20 degrees Celsius?</strong></p>
+<p>We can first apply a boolean operator (<code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">20</span></code>) to our entire array. For each element in the array, it will compute whether it is less than 20 (<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>). We can use <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>. <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>. <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> (equals, not equals, less than, greater than, less than or equal to, greater than or equal to) depending on the type of question we have.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">daily_max</span> <span class="o">&lt;</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True, False, False,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True, False,  True,  True,
+        True,  True, False,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True, False, False, False,
+        True, False, False, False, False, False, False, False, False,
+       False, False,  True, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False,  True,  True, False, False, False, False, False, False,
+        True, False, False, False, False, False,  True, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False,  True, False, False, False, False,  True, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False, False, False, False,  True, False, False, False,
+       False, False, False, False, False, False,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True, False,  True,
+       False, False, False, False, False, False, False,  True,  True,
+       False, False, False,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">True</span></code> is equivalent to 1 and <code class="docutils literal notranslate"><span class="pre">False</span></code> is equal to 0, we can sum up <code class="docutils literal notranslate"><span class="pre">daily_max</span> <span class="pre">&lt;</span> <span class="pre">20</span></code> to get the total number of days the maximum temperature was less than 20 degress Celsius.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">daily_max</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>246
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, say we were interested in the temperatures at which the maximum temperature was less than 20 degrees Celsius. We can use the syntax <code class="docutils literal notranslate"><span class="pre">array[boolean</span> <span class="pre">array]</span></code> to select from our <code class="docutils literal notranslate"><span class="pre">daily_max</span></code> array.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">daily_max</span><span class="p">[</span><span class="n">daily_max</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([ 7.5730515,  9.90463  , 10.972761 ,  8.451971 ,  7.8538175,
+        8.744944 ,  7.8355064, 10.054168 ,  7.6951237,  6.9657426,
+        6.617837 ,  8.6717005,  7.4296165,  6.431677 ,  6.868085 ,
+        6.0471497,  6.4469357,  6.663614 ,  6.3126564,  6.2272058,
+        6.1417556,  5.9220257,  5.723658 ,  5.244525 , -0.5355916,
+        2.3300524,  4.835583 ,  4.8783083,  5.16823  ,  5.3727007,
+        9.001296 ,  8.595406 ,  8.931104 ,  9.09285  ,  9.135575 ,
+        9.7947645, 10.191499 , 10.185395 ,  9.300372 , 10.685891 ,
+       11.287097 , 11.27489  , 13.008314 , 12.96864  , 11.772333 ,
+       11.079574 ,  9.236284 ,  9.816127 ,  9.074539 , 10.8812065,
+       10.917829 , 10.856792 , 10.444798 , 10.823222 , 11.506826 ,
+       12.419316 , 13.539328 , 14.686807 , 14.970624 , 14.128326 ,
+       13.624779 , 14.430455 , 14.076446 , 13.4081   , 13.591208 ,
+       13.496603 , 13.4782915, 13.496603 , 12.614632 , 10.98802  ,
+       11.406117 , 13.029676 , 12.507818 , 13.032728 , 13.743799 ,
+       13.896389 , 15.004194 , 16.06317  , 14.708169 , 14.283968 ,
+       15.123215 , 14.131378 , 17.402912 , 19.343859 , 15.281908 ,
+       18.51377  , 17.854578 , 18.852518 , 17.524984 , 17.329668 ,
+       15.339892 , 17.024488 , 18.294039 , 18.306246 , 17.50057  ,
+       17.769129 , 17.781336 , 17.827112 , 18.092619 , 17.439533 ,
+       17.55245  , 17.39986  , 17.50057  , 17.799646 , 18.315401 ,
+       17.863733 , 18.556494 , 19.002056 , 19.774164 , 18.31235  ,
+       18.776224 , 19.71923  , 19.807734 , 19.502552 , 18.97459  ,
+       19.374376 , 18.083464 , 19.002056 , 18.361177 , 15.748834 ,
+       15.953305 , 15.580985 , 14.03372  , 15.30327  , 13.469136 ,
+       14.024565 , 13.50881  , 14.732583 , 14.891277 , 13.789576 ,
+       13.224992 , 13.234148 , 13.817042 , 14.732583 , 17.952236 ,
+       18.641945 , 18.913555 , 18.913555 , 17.137405 , 17.576864 ,
+       16.716255 , 19.420155 , 19.319445 , 19.331652 , 19.795527 ,
+       18.77012  , 19.691765 , 18.806742 , 16.84138  , 14.442662 ,
+       13.234148 , 16.847483 , 18.941021 , 19.050886 , 19.478138 ,
+       19.832148 , 19.737541 , 19.468983 , 18.358126 , 19.533072 ,
+       17.781336 , 17.476154 , 17.412067 , 16.050962 , 17.04585  ,
+       17.674522 , 16.615547 , 15.6755905, 16.92683  , 15.819026 ,
+       15.291063 , 14.683755 , 13.990995 , 14.433507 , 14.341952 ,
+       13.292132 , 15.529104 , 14.271761 , 15.532156 , 16.267641 ,
+       15.541311 , 14.631874 , 12.413213 , 12.17212  , 12.169068 ,
+       10.646218 , 12.520025 , 13.7651615, 14.488439 , 14.265657 ,
+       13.743799 , 13.188371 , 13.395893 , 13.548484 , 13.06935  ,
+       12.437627 , 11.760126 , 11.946286 , 13.014418 , 12.812999 ,
+       12.208741 , 12.083617 , 11.436635 , 11.363392 , 11.604485 ,
+       11.485464 , 11.180284 , 10.896466 , 10.673684 ,  6.6330957,
+        7.234301 ,  9.391927 ,  8.226137 ,  6.8863955, 10.542457 ,
+       11.012434 , 10.612648 , 10.084686 ,  8.55268  , 10.460058 ,
+        9.48348  ,  7.450979 ,  8.256656 ,  5.870145 ,  5.8731966,
+        5.867093 ,  5.870145 ,  5.8609896,  4.2069116,  4.5304027,
+        5.803005 ,  5.867093 ,  5.857938 ,  6.2638273,  8.830395 ,
+        7.7714186,  8.699167 ,  8.723581 ,  7.814144 ,  8.445868 ,
+        9.6452265,  8.934155 ,  6.102082 ,  6.941328 ,  8.28107  ,
+        7.454031 ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also combine boolean statements to use multiple conditions! Say we wanted the temperatures between 20 <em>and</em> 30 degrees Celsius.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">daily_max</span><span class="p">[(</span><span class="n">daily_max</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">daily_max</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([20.070189, 20.66224 , 20.613409, 20.094603, 22.6276  , 24.174864,
+       23.790337, 20.338747, 21.150526, 20.765999, 22.874796, 24.275574,
+       22.54215 , 21.083387, 21.840235, 23.262375, 22.972454, 21.709007,
+       22.990765, 22.719154, 23.414965, 23.45464 , 22.819864, 22.50858 ,
+       21.08644 , 21.00404 , 23.024334, 25.459675, 24.501408, 24.501408,
+       24.065   , 24.37018 , 21.62966 , 23.027386, 23.86358 , 24.394594,
+       23.765923, 23.784233, 21.840235, 21.840235, 22.935833, 22.938885,
+       24.09857 , 22.941936, 21.547262, 23.74456 , 23.689629, 23.775078,
+       25.026318, 24.007015, 24.333559, 24.6601  , 24.211487, 24.919504,
+       25.413897, 25.77401 , 25.97543 , 27.327377, 28.981457, 28.371096,
+       25.46883 , 23.976498, 23.74456 , 24.092466, 23.125044, 20.067137,
+       23.158613, 22.587927, 20.558477, 23.128096, 26.811623, 26.634619,
+       25.123976, 24.721138, 27.547108, 27.602041, 27.653921, 25.951015,
+       25.783165, 26.851297, 27.513538, 27.013042, 24.803535, 24.08026 ,
+       23.158613, 23.341722, 23.369188, 23.622488, 24.64179 , 26.60105 ,
+       25.340654, 23.430225, 21.52895 , 22.343782, 21.007092, 24.046688,
+       23.891047, 23.43938 , 20.5127  , 23.045698, 24.480045, 20.650032,
+       20.128172, 20.387575, 22.606237, 24.754707, 21.168839, 23.051802,
+       22.471958, 20.66224 , 20.518803, 20.549322, 20.347902, 20.018309])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">|</span></code> represents “or”</p>
+<p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code> represents “and”</p>
+</div>
+<p>Alternatively, say we wanted the temperatures greater than 20 degrees Celsius <em>or</em> less than 10 degrees Celsius.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">daily_max</span><span class="p">[(</span><span class="n">daily_max</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">daily_max</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([ 7.5730515,  9.90463  ,  8.451971 ,  7.8538175,  8.744944 ,
+        7.8355064,  7.6951237,  6.9657426,  6.617837 ,  8.6717005,
+        7.4296165,  6.431677 ,  6.868085 ,  6.0471497,  6.4469357,
+        6.663614 ,  6.3126564,  6.2272058,  6.1417556,  5.9220257,
+        5.723658 ,  5.244525 , -0.5355916,  2.3300524,  4.835583 ,
+        4.8783083,  5.16823  ,  5.3727007,  9.001296 ,  8.595406 ,
+        8.931104 ,  9.09285  ,  9.135575 ,  9.7947645,  9.300372 ,
+        9.236284 ,  9.816127 ,  9.074539 , 20.070189 , 20.66224  ,
+       20.613409 , 20.094603 , 22.6276   , 24.174864 , 23.790337 ,
+       20.338747 , 21.150526 , 20.765999 , 22.874796 , 24.275574 ,
+       22.54215  , 21.083387 , 21.840235 , 23.262375 , 22.972454 ,
+       21.709007 , 22.990765 , 22.719154 , 23.414965 , 23.45464  ,
+       22.819864 , 22.50858  , 21.08644  , 21.00404  , 23.024334 ,
+       25.459675 , 24.501408 , 24.501408 , 24.065    , 24.37018  ,
+       21.62966  , 23.027386 , 23.86358  , 24.394594 , 23.765923 ,
+       23.784233 , 21.840235 , 21.840235 , 22.935833 , 22.938885 ,
+       24.09857  , 22.941936 , 21.547262 , 23.74456  , 23.689629 ,
+       23.775078 , 25.026318 , 24.007015 , 24.333559 , 24.6601   ,
+       24.211487 , 24.919504 , 25.413897 , 25.77401  , 25.97543  ,
+       27.327377 , 28.981457 , 28.371096 , 25.46883  , 23.976498 ,
+       23.74456  , 24.092466 , 23.125044 , 20.067137 , 23.158613 ,
+       22.587927 , 20.558477 , 23.128096 , 26.811623 , 26.634619 ,
+       25.123976 , 24.721138 , 27.547108 , 27.602041 , 27.653921 ,
+       25.951015 , 25.783165 , 26.851297 , 27.513538 , 27.013042 ,
+       24.803535 , 24.08026  , 23.158613 , 23.341722 , 23.369188 ,
+       23.622488 , 24.64179  , 26.60105  , 25.340654 , 23.430225 ,
+       21.52895  , 22.343782 , 21.007092 , 24.046688 , 23.891047 ,
+       23.43938  , 20.5127   , 23.045698 , 24.480045 , 20.650032 ,
+       20.128172 , 20.387575 , 22.606237 , 24.754707 , 21.168839 ,
+       23.051802 , 22.471958 , 20.66224  , 20.518803 , 20.549322 ,
+       20.347902 , 20.018309 ,  6.6330957,  7.234301 ,  9.391927 ,
+        8.226137 ,  6.8863955,  8.55268  ,  9.48348  ,  7.450979 ,
+        8.256656 ,  5.870145 ,  5.8731966,  5.867093 ,  5.870145 ,
+        5.8609896,  4.2069116,  4.5304027,  5.803005 ,  5.867093 ,
+        5.857938 ,  6.2638273,  8.830395 ,  7.7714186,  8.699167 ,
+        8.723581 ,  7.814144 ,  8.445868 ,  9.6452265,  8.934155 ,
+        6.102082 ,  6.941328 ,  8.28107  ,  7.454031 ])
 </pre></div>
 </div>
 </div>
@@ -184,6 +441,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="computation-arrays.html" title="previous page">Computation on Arrays</a>
+    <a class='right-next' id="next-link" href="../4-pandas/intro-pandas.html" title="next page">Introduction to Pandas</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
