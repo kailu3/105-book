@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Python Variables &#8212; CIS 105 Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python Types" href="../2-python-types/intro-types.html" />
+    <link rel="prev" title="Call Expressions" href="call-expressions.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">CIS 105 Book</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../preface.html">Preface</a>
+  </li>
+  <li class="">
+    <a href="../0-getting-started/intro-jupyter.html">Introduction to Jupyter</a>
+  </li>
+  <li class="active">
+    <a href="hello-world.html">Hello World</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="basic-math.html">Basic Math Operations</a>
+    </li>
+    <li class="">
+      <a href="call-expressions.html">Call Expressions</a>
+    </li>
+    <li class="active">
+      <a href="">Python Variables</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../2-python-types/intro-types.html">Python Types</a>
+  </li>
+  <li class="">
+    <a href="../3-numpy/intro-numpy.html">Introduction to NumPy</a>
+  </li>
+  <li class="">
+    <a href="../4-pandas/intro-pandas.html">Introduction to Pandas</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="../_sources/1-intro-programming/variables.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/kailu3/105-book/master?urlpath=tree/1-intro-programming/variables.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="../_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                
+            </div>
+        </div>
+        
+
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#variable-names" class="nav-link">Variable Names</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#passing-variables-to-strings" class="nav-link">Passing Variables to Strings</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="python-variables">
+<h1>Python Variables<a class="headerlink" href="#python-variables" title="Permalink to this headline">¶</a></h1>
+<p>Using variables is essential to all programming languages. I like to think of a variable as a nametag attached to an object. Variables are essentially reserved memory locations to store values. In Python, variables do not need to be declared or defined in advance like other programming languages such as Java. To create a variable, we just assign it a value and then can start using it. Assignment is done with a single equals sign <code class="docutils literal notranslate"><span class="pre">=</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">colour_of_car</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>This is read as <code class="docutils literal notranslate"><span class="pre">colour_of_car</span></code> is assigned the string “red”. Once this is done, <code class="docutils literal notranslate"><span class="pre">colour_of_car</span></code> can be used in any statement or expression, and its value will be substituted.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">colour_of_car</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>red
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python also supports multiple assignment, which allows you to assign values to multiple variables in one line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also assign the same value to multiple variables in one line. I don’t use this one often though!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">=</span> <span class="s2">&quot;cat&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>cat
+cat
+cat
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="variable-names">
+<h2>Variable Names<a class="headerlink" href="#variable-names" title="Permalink to this headline">¶</a></h2>
+<p>Here are some rules for naming your variables:</p>
+<ul class="simple">
+<li><p>A variable name must start with a letter or the _ character</p></li>
+<li><p>A variable name cannot start with a number</p></li>
+<li><p>A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _)</p></li>
+<li><p>Variable names are case-sensitive (cat, Cat, and caT are three different variables)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">=</span> <span class="s2">&quot;meow&quot;</span>
+<span class="c1"># mistyping variable names is a very common error!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p class="admonition-title">Warning</p>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">print(Cat)</span></code> would not work since our variable name is <code class="docutils literal notranslate"><span class="pre">cat</span></code>.</p>
+</div>
+<div class="alert alert-primary">
+<p class="admonition-title">Tip</p>
+<p>When typing your variable you can press <code class="docutils literal notranslate"><span class="pre">TAB</span></code> to bring up a drop down of variable names to select from or to autocomplete your variable name.</p>
+</div>
+</div>
+<div class="section" id="passing-variables-to-strings">
+<h2>Passing Variables to Strings<a class="headerlink" href="#passing-variables-to-strings" title="Permalink to this headline">¶</a></h2>
+<p>You may want to print a message with a variable at times to help with debugging. Some ways to do this are</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apple</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Apples are &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">apple</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; dollars a dozen&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Apples are 12 dollars a dozen
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+<p class="admonition-title">Note</p>
+<p>When you concatenate Strings using <code class="docutils literal notranslate"><span class="pre">+</span></code>, all components must be of String Type. Here, I used the <code class="docutils literal notranslate"><span class="pre">str()</span></code> function to cast the integer 12 into the String <code class="docutils literal notranslate"><span class="pre">12</span></code>. More on types and casting later.</p>
+</div>
+<p>Here is another way of doing String concatenation that does not require 12 to be a String.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Apples are&#39;</span><span class="p">,</span> <span class="n">apple</span><span class="p">,</span> <span class="s1">&#39;dollars a dozen&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Apples are 12 dollars a dozen
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">.format</span></code> to pass variables to Strings</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;apples are </span><span class="si">{}</span><span class="s1"> dollars a dozen&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">apple</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>apples are 12 dollars a dozen
+</pre></div>
+</div>
+</div>
+</div>
+<p>In Python 3.6, we can also use <code class="docutils literal notranslate"><span class="pre">f-strings</span></code>. This is another way of formatting
+strings that I am trying to use more frequently. So far it’s the cleanest way in my opinion to embed variables into Strings. Here’s a simple example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;apples are </span><span class="si">{apple}</span><span class="s1"> dollars a dozen&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>apples are 12 dollars a dozen
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also do inline arithmetic with this formatting approach! Pretty cool!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Five plus ten is {a + b} and not {2 * (a + b)}.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Five plus ten is 15 and not 30.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-primary">
+<p class="admonition-title">Tip</p>
+<p>As you see, there are multiple ways to pass variables to a String in Python. Similarly, there are many different ways
+to do most things in Python. These snippets in this book are just how I use Python for tasks I want to complete. You should not be limited by them!</p>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="call-expressions.html" title="previous page">Call Expressions</a>
+    <a class='right-next' id="next-link" href="../2-python-types/intro-types.html" title="next page">Python Types</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kai Lu<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

@@ -1,12 +1,11 @@
 
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Index &#8212; CIS 105 Book</title>
+    <title>Preface &#8212; CIS 105 Book</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -29,8 +28,9 @@
     <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction to Jupyter" href="0-getting-started/intro-jupyter.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -63,8 +63,8 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="preface.html">Preface</a>
+  <li class="active">
+    <a href="#">Preface</a>
   </li>
   <li class="">
     <a href="0-getting-started/intro-jupyter.html">Introduction to Jupyter</a>
@@ -107,6 +107,15 @@
             <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
 
             
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/preface.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
         </div>
 
         <!-- Edit this page -->
@@ -121,9 +130,28 @@
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#who-is-this-book-for" class="nav-link">Who Is This Book For?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#getting-help" class="nav-link">Getting Help</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#contributing-and-topic-requests" class="nav-link">Contributing and Topic Requests</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#references" class="nav-link">References</a>
+        </li>
     
     </ul>
 </nav>
@@ -136,11 +164,45 @@
         
               <div>
                 
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="preface">
+<h1>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h1>
+<p>This is a book documenting the topics taught in CIS 105: Computational Data Exploration. For the most part, the content will closely follow the course content and may in some areas expand on it. The goal for this book is to provide a reference guide for the material taught in 105.</p>
+<ul class="simple">
+<li><p>Kai</p></li>
+</ul>
+<div class="section" id="who-is-this-book-for">
+<h2>Who Is This Book For?<a class="headerlink" href="#who-is-this-book-for" title="Permalink to this headline">¶</a></h2>
+<p>For students in CIS 105 and also anyone looking for an easy introduction to learn Python for data analysis. Over the past
+months, I’ve received a lot of questions about how to best learn Python for data analysis from <strong>scratch</strong> as a lot of the
+introductory resources out there seem to assume some computer science knowledge which can be daunting for some.
+My other goal for this book is to provide an easy-to-reference guide for anyone looking to dabble in Python and teach
+the data science process from how I would’ve wanted to learn it if I could go back in time.</p>
+<div class="alert alert-warning">
+<p class="admonition-title">Warning</p>
+<p>More advanced or experienced users will find the pacing to be slow. I would recommend checking out <a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/"><em>The Python Data Science Handbook</em></a> by Jake VanderPlas as a faster introduction to learn Python for data analysis.</p>
+</div>
+</div>
+<div class="section" id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<p>While I would love to help everyone, time can be constraining. Usually, my advice is to Google it first and try to figure it out yourself. There is a great quote from <strong>Jake VanderPlas</strong> on this:</p>
+<blockquote>
+<div><p>Being an effective practitioner of data science is less about memorizing the tool or command you should use for every possible situation, and more about learning to effectively find the information you don’t know, whether through a web search engine or another means.</p>
+</div></blockquote>
+</div>
+<div class="section" id="contributing-and-topic-requests">
+<h2>Contributing and Topic Requests<a class="headerlink" href="#contributing-and-topic-requests" title="Permalink to this headline">¶</a></h2>
+<p>If you notice opportunities for improvements in terms of typos, spelling, grammar, syntax, etc., feel free to email me at kailu3&#64;sas.upenn.edu! If you would like to contribute to this project, please open a pull request and I will get back to you as soon as possible.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>Some material from this book will be referenced from</p>
+<blockquote>
+<div><p><a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/"><em>The Python Data Science Handbook</em></a> by Jake VanderPlas (O’Reilly). Copyright 2016 Jake VanderPlas, 978-1-491-91205-8.</p>
+</div></blockquote>
+<p>which is a great book to check out as a continuation and deeper dive into using Python effectively for data.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
 </div>
 
 
@@ -152,6 +214,7 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='right-next' id="next-link" href="0-getting-started/intro-jupyter.html" title="next page">Introduction to Jupyter</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
